@@ -1,6 +1,17 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Produto
+from racketltda.models import Person, Course
+class PersonAdmin(admin.ModelAdmin):
+    list_display = ("first_name", "last_name")
+    search_fields = ("first_name", "last_name")
 
-admin.site.register(Produto)
+
+class CourseAdmin(admin.ModelAdmin):
+    list_display = ("name", "teacher", "workload", "period")
+    search_fields = ("name",)
+    list_filter = ("teacher", "period")
+
+
+admin.site.register(Person, PersonAdmin)
+admin.site.register(Course, CourseAdmin)
